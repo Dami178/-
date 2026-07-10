@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Webinars</h2>
+<div class="row">
+    {% for webinar in webinars %}
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">{{ webinar.title }}</h5>
+                <p class="card-text">Teacher: {{ webinar.teacher.username }}</p>
+                <a href="{% url 'courses:webinar_detail' webinar.id %}" class="btn btn-primary">View Webinar</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>No webinars available.</p>
+    {% endfor %}
+</div>
+{% endblock %}
