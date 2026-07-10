@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ homework.title }}</h2>
+<p>{{ homework.description }}</p>
+
+{% if user.role == 'student' %}
+    <hr>
+    <h3>Your Submission</h3>
+    {% if submission %}
+        <div class="alert alert-{% if submission.status == 'graded' %}success{% else %}warning{% endif %}">
+            Status: {{ submission.get_status_display }}
+            {% if submission.grade %}
+                <br>Grade: {{ submission.grade }}
+            {% endif %}
+            {% if submission.curator_comment %}
+                <br>Comment: {{ submission.curator_comment }}
+            {% endif %}
+        </div>
+        <p>Your answer:</p>
+        <pre>{{ submission.answer }}</pre>
+    {% endif %}
+
+    {% if not submission or submission.status == 'pending' %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="answer" class="form-label">Answer</label>
+            <textarea class="form-control" id="answer" name="answer" rows="5" required>{% if submission %}{{ submission.answer }}{% endif %}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Homework</button>
+    </form>
+    {% endif %}
+{% endif %}
+{% endblock %}

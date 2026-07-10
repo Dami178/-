@@ -1,11 +1,11 @@
-a , b=[int(a) for a in input().split()]
+a, b = [int(a) for a in input().split()]
 
-k=0
+k = 0
 for i in input().split():
-    k+=int(i)
+    k += int(i)
 
 
-if a + k*20 <= b:
-    print('No chance.')
+if a + k * 20 <= b:
+    print("No chance.")
 else:
-    print('Dirty debug :(')
+    print("Dirty debug :(")

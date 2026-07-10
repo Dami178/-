@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ webinar.title }}</h2>
+<p>Teacher: {{ webinar.teacher.username }}</p>
+<p>{{ webinar.description }}</p>
+<div class="mb-4">
+    <a href="{{ webinar.video_url }}" target="_blank" class="btn btn-info">Watch Recording</a>
+</div>
+
+<h3>Homework</h3>
+<ul class="list-group">
+    {% for hw in webinar.homeworks.all %}
+        <li class="list-group-item">
+            <a href="{% url 'courses:homework_detail' hw.id %}">{{ hw.title }}</a>
+            {% if hw.due_date %} - Due: {{ hw.due_date }}{% endif %}
+        </li>
+    {% empty %}
+        <li class="list-group-item">No homework for this webinar.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

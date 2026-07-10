@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Pending Homework Submissions</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Student</th>
+            <th>Homework</th>
+            <th>Submitted At</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for submission in submissions %}
+        <tr>
+            <td>{{ submission.student.username }}</td>
+            <td>{{ submission.homework.title }}</td>
+            <td>{{ submission.submitted_at }}</td>
+            <td>
+                <a href="{% url 'courses:review_submission' submission.id %}" class="btn btn-sm btn-primary">Review</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No pending submissions.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,14 +1,14 @@
-h,t,v,x=[int(a) for a in input().split()]
-vmin=h/t
+h, t, v, x = [int(a) for a in input().split()]
+vmin = h / t
 
-if vmin >=x:
-    tmin=(t*x -h)/(v-x)
+if vmin >= x:
+    tmin = (t * x - h) / (v - x)
 else:
-    tmin=0
+    tmin = 0
 
-if vmin>x:
-    tmax=t
+if vmin > x:
+    tmax = t
 else:
-    tmax=h/x
+    tmax = h / x
 
-print(abs(tmin),tmax)
+print(abs(tmin), tmax)
